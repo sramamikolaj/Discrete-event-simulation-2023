@@ -1,15 +1,12 @@
 #ifndef USER_H
 #define USER_H
 
-enum UserStatus
-{
-    Good = 0,
-    Remove
-};
+#include"defs.h"
 
 class User
 {
-
+    void updatePosition(float);
+    float alphaValue;
     short currentBTS;
     bool alphaTimeout;
     float btsPosition[2];
@@ -18,14 +15,15 @@ class User
     float timeToReport; /*t*/
     float speed;
     //////
-
-    UserStatus updateUser();
+    float gauss(float mean, float dev);
+    
     float calculatePower(float);
-
-    void generateRandom();
 
 public:
     User();
+    UserStatus updateUser(float);
 };
 
 #endif
+
+
