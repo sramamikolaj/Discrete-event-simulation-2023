@@ -13,9 +13,6 @@ class System{
     std::queue<User> userQueue; 
     std::list<User> usersInSystem;
     
-    //std::map<std::string, float> constants;
-    //bool readConstants;
-
     void addUser();
 
 public:

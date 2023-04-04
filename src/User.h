@@ -5,18 +5,16 @@
 
 class User
 {
-    void    updatePosition(float);
     float   alphaValue;
     short   currentBTS;
     bool    alphaTimeout;
     float   position;
-    // Random::
-    float   timeToReport; /*t*/
     float   speed;
-    //////
 
+    void    updatePosition();
     float   gauss(float mean, float dev);
     float   calculatePower(float);
+    float   getRandom();
 
 public:
     User();
