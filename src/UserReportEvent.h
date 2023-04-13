@@ -7,6 +7,9 @@ public:
     void execute();
 
     UserReportEvent(double time):TimedEvent(time){};
+
+private:
+    
 };
 
 #endif 

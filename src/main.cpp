@@ -1,6 +1,7 @@
 #include <iostream>
+#include "Simulation.h"
 
 int main(int, char**) {
-    std::cout << "Hello, world!\n";
+    Simulation* simulation = new Simulation();
     
 }

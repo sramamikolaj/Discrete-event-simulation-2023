@@ -8,6 +8,7 @@
 #include<string>
 
 class System{
+public:
     float BTSposition[2];
 
     std::queue<User> userQueue; 

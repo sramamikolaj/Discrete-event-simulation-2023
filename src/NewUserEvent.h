@@ -7,6 +7,10 @@ public:
     void execute();
 
     NewUserEvent(double time):TimedEvent(time){};
+
+private:
+    std::queue<User>* usersInSystem;
+
 };
 
 #endif 
