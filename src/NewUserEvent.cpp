@@ -1,6 +1,10 @@
-#include "NewEventUser.h"
+#include "NewUserEvent.h"
 
-void NewEventUser::execute()
-{
+void NewUserEvent::execute(){
     std::cout << "NewEventUser execute";
+    planNextEvent();
+}
+void NewUserEvent::planNextEvent(){
+    std::cout << "NewEventUser planNextEvent" << std::endl;
+    eventQueue->push_front(new NewUserEvent(10, eventQueue));
 }
