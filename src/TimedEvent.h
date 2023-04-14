@@ -8,11 +8,6 @@ public:
     virtual void execute() = 0;
 
     TimedEvent(double time):eventTime(time){};
-
-    bool operator()(const TimedEvent* a, const TimedEvent* b )
-    {
-        return a->eventTime > b->eventTime;
-    }
 };
 
 #endif 

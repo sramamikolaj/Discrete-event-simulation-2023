@@ -9,6 +9,7 @@
 class Simulation{
     System* system;
     double time;
+    Conditions conditions;
     
     void advanceTime();
     void handleConditionalEvents();

@@ -11,10 +11,11 @@ class System{
 public:
     float BTSposition[2];
 
-    std::queue<User> userQueue; 
-    std::list<User> usersInSystem;
     
-    void addUser();
+    uint usersInQueue; 
+    std::list<User*> usersInSystem;
+    
+    User* addUser();
 
 public:
     System(); 

@@ -1,9 +1,12 @@
 #include "User.h"
 #include <cmath>
 #include <random>
+#include <iostream>
 
 void User::updatePosition(){
+    std::cout << "  User position was " << position << ", new is " ;
     position = speed * REPORT_TIME;
+    std::cout << position << std::endl;
 }
 UserStatus User::updateUser()
 {
@@ -53,7 +56,8 @@ float User::calculatePower(float d)
 
 float User::getRandom()
 {
-    return 0.0f;
+
+    return 30; //temp
 }
 
 User::User()
