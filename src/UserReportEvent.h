@@ -11,7 +11,7 @@ public:
     
     void execute();
 
-    UserReportEvent(double time, User* user_):TimedEvent(time), user(user_){};
+    UserReportEvent(double time, User* user_, std::list<TimedEvent*>* eventQueue_):TimedEvent(time, eventQueue_), user(user_){};
 
 
 };

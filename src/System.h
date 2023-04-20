@@ -12,7 +12,7 @@ public:
     float BTSposition[2];
 
     
-    uint usersInQueue; 
+    int usersInQueue; 
     std::list<User*> usersInSystem;
     
     User* addUser();

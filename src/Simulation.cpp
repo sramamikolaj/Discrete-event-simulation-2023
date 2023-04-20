@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Simulation.h"
-#include <unistd.h> //temp for sleep
+//#include <unistd.h> //temp for sleep
+#include <windows.h>
 
 Simulation::Simulation(){
     std::cout << "Simulation constructor" << std::endl;
@@ -18,8 +19,10 @@ void Simulation::run()
         eventQueue.front()->execute();
         eventQueue.pop_front();
 
-
-        usleep(1000000); //wait 1s for debug
+        //temp
+        eventQueue.sort();
+        //usleep(1000000); //wait 1s for debug
+        Sleep(100);
     }
     
 }

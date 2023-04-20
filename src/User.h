@@ -19,6 +19,9 @@ class User
 public:
     User();
     UserStatus  updateUser();
+
+    
+    
 };
 
 #endif

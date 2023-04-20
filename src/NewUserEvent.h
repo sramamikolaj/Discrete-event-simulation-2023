@@ -9,7 +9,7 @@
 class NewUserEvent: public TimedEvent{
 
 private:
-    std::list<TimedEvent*>* eventQueue;
+    
     System* system;
 
     void planNextNewUserEvent();
@@ -19,7 +19,7 @@ public:
     void execute();
 
     
-    NewUserEvent(double time, std::list<TimedEvent*>* eventQueue_, System* system_):TimedEvent(time), eventQueue(eventQueue_), system(system_)
+    NewUserEvent(double time, std::list<TimedEvent*>* eventQueue_, System* system_):TimedEvent(time, eventQueue_), system(system_)
     { std::cout << "NewUserEvent constructor " << time << std::endl; };
 
 };

@@ -5,13 +5,13 @@
 
 void User::updatePosition(){
     std::cout << "  User position was " << position << ", new is " ;
-    position = speed * REPORT_TIME;
+    position += speed * REPORT_TIME;
     std::cout << position << std::endl;
 }
 UserStatus User::updateUser()
 {
     updatePosition();
-    if(position > X_DISTANCE) return Left_system;
+    if(position > BTS_POSITION[1]+X_DISTANCE) return Left_system;
 
     float powerFirstBTS = calculatePower(abs(position - BTS_POSITION[0]));
     float powerSecondBTS = calculatePower(abs(position - BTS_POSITION[1]));
@@ -57,7 +57,7 @@ float User::calculatePower(float d)
 float User::getRandom()
 {
 
-    return 30; //temp
+    return 10; //temp
 }
 
 User::User()

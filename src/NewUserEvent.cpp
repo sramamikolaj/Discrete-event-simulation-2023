@@ -17,5 +17,5 @@ void NewUserEvent::planNextNewUserEvent(){
 }
 void NewUserEvent::planNextUserReportEvent(User* user){
     std::cout << "NewEventUser planUserReportEvent for " << eventTime+3 << std::endl;
-    eventQueue->push_back(new UserReportEvent(eventTime+1, user));
+    eventQueue->push_back(new UserReportEvent(eventTime+1, user, eventQueue));
 }
