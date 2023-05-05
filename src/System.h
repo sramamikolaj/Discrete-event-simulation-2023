@@ -16,7 +16,7 @@ public:
     std::list<User*> usersInSystem;
     
     User* addUser();
-
+    void removeUser(User*);
 public:
     System(); 
 

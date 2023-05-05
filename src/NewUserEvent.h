@@ -5,6 +5,8 @@
 #include   <list>
 #include "System.h"
 #include "User.h"
+#include "Simulation.h"
+#include <queue>
 
 class NewUserEvent: public TimedEvent{
 
@@ -16,10 +18,10 @@ private:
     void planNextUserReportEvent(User*);
     //std::queue<User>* usersInSystem;
 public:
-    void execute();
+    ExecutionFlags execute();
 
     
-    NewUserEvent(double time, std::list<TimedEvent*>* eventQueue_, System* system_):TimedEvent(time, eventQueue_), system(system_)
+    NewUserEvent(double time, std::list<TimedEvent*>* eventQueue_, System* system_, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_):TimedEvent(time, eq_), system(system_)
     { std::cout << "NewUserEvent constructor " << time << std::endl; };
 
 };

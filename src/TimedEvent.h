@@ -1,20 +1,30 @@
 #ifndef TIMED_EVENT_H
 #define TIMED_EVENT_H
 #include<list>
+#include<queue>
+#include"ExecutionFlags.h"
+
+class Compare;
 
 class TimedEvent{
 public:
     std::list<TimedEvent*>* eventQueue;
     double eventTime;
-    virtual void execute() = 0;
+    virtual ExecutionFlags execute() = 0;
+    std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq;
 
-    TimedEvent(double time, std::list<TimedEvent*>* eventQueue_):eventTime(time),eventQueue(eventQueue_){};
+    TimedEvent(double time, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_):eventTime(time),eq(eq_){};
+  
+};
 
-    //temp?
-    bool operator <(const TimedEvent & te) const
-    {
-        return eventTime > te.eventTime;
-    }
+class Compare {
+    public:
+       bool operator()(TimedEvent* a, TimedEvent* b){
+           if(a->eventTime > b->eventTime){
+               return true;
+           }
+           return false;
+      }
 };
 
 #endif 

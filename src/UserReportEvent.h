@@ -2,6 +2,7 @@
 #define USER_REPORT_EVENT_H
 #include "TimedEvent.h"
 #include "User.h"
+#include <queue>
 
 class UserReportEvent: public TimedEvent{
 private:
@@ -9,9 +10,9 @@ private:
     
 public:
     
-    void execute();
+    ExecutionFlags execute();
 
-    UserReportEvent(double time, User* user_, std::list<TimedEvent*>* eventQueue_):TimedEvent(time, eventQueue_), user(user_){};
+    UserReportEvent(double time, User* user_, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_):TimedEvent(time, eq_), user(user_){};
 
 
 };

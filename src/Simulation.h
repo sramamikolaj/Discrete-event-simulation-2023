@@ -5,16 +5,9 @@
 #include "TimedEvent.h" 
 #include "System.h"
 #include "NewUserEvent.h"
+#include "UserReportEvent.h"
+#include "ExecutionFlags.h"
 
-class Compare {
-    public:
-       bool operator()(TimedEvent* a, TimedEvent* b){
-           if(a->eventTime > b->eventTime){
-               return true;
-           }
-           return false;
-      }
-};
 
 class Simulation{
     System* system;
@@ -22,10 +15,10 @@ class Simulation{
     Conditions conditions;
     
     void advanceTime();
-    void handleConditionalEvents();
+    void handleConditionalEvents(ExecutionFlags flags);
 
     std::list<TimedEvent*> eventQueue;
-    //std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare> eq;
+    std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare> eq;
 
 public: 
     Simulation();

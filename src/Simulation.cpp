@@ -1,32 +1,41 @@
 #include <iostream>
 #include "Simulation.h"
-//#include <unistd.h> //temp for sleep
-#include <windows.h>
+#include <unistd.h> 
+//#include <windows.h>
 
 Simulation::Simulation(){
-    std::cout << "Simulation constructor" << std::endl;
     system = new System();
-    time = 0;
-    eventQueue.push_front(new NewUserEvent(time+5, &eventQueue, system));    
+    time = 0; 
+    eq.push(new NewUserEvent(time+5, &eventQueue, system, &eq));
 }
 
 void Simulation::run()
 {
-    //problem ze struktura
     while(true){
-        if(eventQueue.empty()) break;
+        if(eq.empty()) break;
         advanceTime();
-        eventQueue.front()->execute();
-        eventQueue.pop_front();
+        ExecutionFlags ef = eq.top()->execute();
+        eq.pop();
 
-        //temp
-        eventQueue.sort();
-        //usleep(1000000); //wait 1s for debug
-        Sleep(100);
+        if(ef.anyFlag()) handleConditionalEvents(ef);
+
+        
     }
     
 }
+
 void Simulation::advanceTime(){
-    time = eventQueue.front()->eventTime;
+    time = eq.top()->eventTime;
     std::cout << "Advance time to " << time << std::endl;
+}
+void Simulation::handleConditionalEvents(ExecutionFlags flags){
+    if(flags.systemFull){
+        system->usersInQueue++;
+    }
+    if(flags.userLeft){
+        eq.push(new UserReportEvent(time+1, system->addUser(), &eq));
+    }
+    if(flags.userBrokeConnection){
+        eq.push(new UserReportEvent(time+1, system->addUser(), &eq));
+    }
 }

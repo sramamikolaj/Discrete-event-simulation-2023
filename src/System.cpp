@@ -5,6 +5,9 @@ System::System()
     std::cout << "System constructor" << std::endl;
     usersInQueue = 0;
 }
+void System::removeUser(User* user){
+    usersInSystem.remove(user);
+}
 
 void System::updateSystem()
 {

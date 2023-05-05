@@ -3,6 +3,8 @@
 
 #include"defs.h"
 
+
+
 class User
 {
     float   alphaValue;
