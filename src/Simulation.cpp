@@ -33,9 +33,17 @@ void Simulation::handleConditionalEvents(ExecutionFlags flags){
         system->usersInQueue++;
     }
     if(flags.userLeft){
-        eq.push(new UserReportEvent(time+1, system->addUser(), &eq));
+        system->removeUser(flags.user);
+        if(system->usersInQueue > 0){
+            system->usersInQueue--;
+            eq.push(new UserReportEvent(time+1, system->addUser(), &eq));
+        }
     }
     if(flags.userBrokeConnection){
-        eq.push(new UserReportEvent(time+1, system->addUser(), &eq));
+        system->removeUser(flags.user);
+        if(system->usersInQueue > 0){
+            system->usersInQueue--;
+            eq.push(new UserReportEvent(time+1, system->addUser(), &eq));
+        }
     }
 }
