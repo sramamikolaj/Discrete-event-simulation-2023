@@ -14,6 +14,7 @@ class Simulation{
     double time;
     Conditions conditions;
     
+    Generator* randomTime;
     void advanceTime();
     void handleConditionalEvents(ExecutionFlags flags);
 

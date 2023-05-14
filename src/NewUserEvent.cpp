@@ -18,7 +18,7 @@ ExecutionFlags NewUserEvent::execute(){
 }
 void NewUserEvent::planNextNewUserEvent(){
     std::cout << "NewEventUser planNextEvent for " << eventTime+5 << std::endl;
-    eq->push(new NewUserEvent(eventTime+20, eventQueue, system, eq));
+    eq->push(new NewUserEvent(eventTime+random->randLog(1), eventQueue, system, eq, random));
 }
 void NewUserEvent::planNextUserReportEvent(User* user){
     std::cout << "NewEventUser planUserReportEvent for " << eventTime+3 << std::endl;

@@ -2,7 +2,7 @@
 #define USER_H
 
 #include"defs.h"
-
+#include "Generator.h"
 
 
 class User
@@ -13,13 +13,14 @@ class User
     float   position;
     float   speed;
 
+    Generator * random;
     void    updatePosition();
     float   gauss(float mean, float dev);
     float   calculatePower(float);
     float   getRandom();
 
 public:
-    User();
+    User(float speed_, Generator* random_);
     UserStatus  updateUser();
 
     

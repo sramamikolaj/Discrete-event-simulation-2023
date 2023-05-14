@@ -5,7 +5,7 @@
 
 void User::updatePosition(){
     std::cout << "  User position was " << position << ", new is " ;
-    position += speed * REPORT_TIME;
+    position += speed * REPORT_TIME*0.001;
     std::cout << position << std::endl;
 }
 UserStatus User::updateUser()
@@ -51,7 +51,7 @@ float User::gauss(float mean, float dev){
 
 float User::calculatePower(float d)
 {
-    return 4.56 - 22*log10(d) + gauss(0, 4);
+    return 4.56 - 22*log10(d) + random->generateGaussian(0, 4);
 }
 
 float User::getRandom()
@@ -60,12 +60,12 @@ float User::getRandom()
     return 10; //temp
 }
 
-User::User()
+User::User(float speed_, Generator* random_)
 {
     position = X_DISTANCE;
     alphaTimeout = false;
     alphaValue = TTT;
     currentBTS = 0;
-
-    speed = getRandom();
+    speed = speed_;
+    random = random_;
 }
