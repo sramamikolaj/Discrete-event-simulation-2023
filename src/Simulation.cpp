@@ -6,7 +6,7 @@ Simulation::Simulation(){
     system = new System();
     time = 0; 
     randomTime = new Generator(241673);
-    eq.push(new NewUserEvent(randomTime->randLog(LAMBDA), &eventQueue, system, &eq, randomTime));
+    eq.push(new NewUserEvent(time+randomTime->randLog(LAMBDA), &eventQueue, system, &eq, randomTime));
     logger.log();
 }
 
@@ -24,9 +24,6 @@ void Simulation::run()
             {
                 return;
             }
-        }
-        if(logger.getHandled() == 247){
-            std::cout << "Hi";
         }
     }
 }
@@ -47,7 +44,8 @@ bool Simulation::handleConditionalEvents(ExecutionFlags flags){
         }
         logger.addHandled_left();
         logger.setUsersInSystem(system->usersInSystem.size()+system->usersInQueue);
-        logger.log();
+        logger.print();
+        //std::cout << "  User handled at " << time << std::endl;
     }
     if(flags.userBrokeConnection){
         system->removeUser(flags.user);
@@ -57,11 +55,12 @@ bool Simulation::handleConditionalEvents(ExecutionFlags flags){
         }
         logger.addHandled_broken();
         logger.setUsersInSystem(system->usersInSystem.size()+system->usersInQueue);
-        logger.log();
+        logger.print();
+        //std::cout << "  User handled at " << time << std::endl;
     }
     if(flags.userSwitched){
         logger.addSwitch();
     }
-    if(logger.getHandled() >= 3000) return true;
+    if(logger.getHandled() >= 300) return true;
     return false;
 }

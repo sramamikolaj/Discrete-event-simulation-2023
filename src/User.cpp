@@ -4,7 +4,7 @@
 #include <iostream>
 
 void User::updatePosition(){
-    position += speed * REPORT_TIME;
+    position += speed * REPORT_TIME * 0.001;
 }
 UserStatus User::updateUser()
 {
@@ -15,10 +15,13 @@ UserStatus User::updateUser()
     float powerSecondBTS    = calculatePower(abs(position - BTS_POSITION[1]));
     float diff = powerSecondBTS - powerFirstBTS;
 
-    if(abs(diff) > DELTA) return Broken;
+    if(abs(diff) > DELTA){
+        //std::cout << "  User broken on " << position << " (with speed " << speed << ")" << std::endl;
+        return Broken;
+    }
 
     //ifology to be changed
-    if(diff >= ALPHA){
+    if(diff >= ALPHA && currentBTS == 0){
         if(alphaTimeout){
             alphaValue -= REPORT_TIME;
             if(alphaValue <= 0){

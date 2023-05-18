@@ -5,7 +5,7 @@ const int REPORT_TIME = 20;
 const int DELTA = 20;
 const int BTS_POSITION[] = {0, 5000};
 const int USER_LIMIT = 60;
-const double LAMBDA = 400;
+const double LAMBDA = 0.005;
 
 enum UserStatus
 {
