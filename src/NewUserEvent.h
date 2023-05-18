@@ -23,7 +23,7 @@ public:
 
     
     NewUserEvent(double time, std::list<TimedEvent*>* eventQueue_, System* system_, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_, Generator* random_):TimedEvent(time, eq_), system(system_), random(random_)
-    { std::cout << "NewUserEvent constructor " << time << std::endl; };
+    {};
 
 };
 

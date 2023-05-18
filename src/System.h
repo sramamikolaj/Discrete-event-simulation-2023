@@ -21,8 +21,7 @@ public:
     void removeUser(User*);
 public:
     System(); 
-
-    void updateSystem();
+    ~System();
     
 };
 

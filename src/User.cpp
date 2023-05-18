@@ -4,17 +4,15 @@
 #include <iostream>
 
 void User::updatePosition(){
-    std::cout << "  User position was " << position << ", new is " ;
-    position += speed * REPORT_TIME*0.001;
-    std::cout << position << std::endl;
+    position += speed * REPORT_TIME;
 }
 UserStatus User::updateUser()
 {
     updatePosition();
-    if(position > BTS_POSITION[1]+X_DISTANCE) return Left_system;
+    if(position > BTS_POSITION[1]) return Left_system;
 
-    float powerFirstBTS = calculatePower(abs(position - BTS_POSITION[0]));
-    float powerSecondBTS = calculatePower(abs(position - BTS_POSITION[1]));
+    float powerFirstBTS     = calculatePower(abs(position - BTS_POSITION[0]));
+    float powerSecondBTS    = calculatePower(abs(position - BTS_POSITION[1]));
     float diff = powerSecondBTS - powerFirstBTS;
 
     if(abs(diff) > DELTA) return Broken;
@@ -25,6 +23,7 @@ UserStatus User::updateUser()
             alphaValue -= REPORT_TIME;
             if(alphaValue <= 0){
                 currentBTS = 1;
+                alphaValue = TTT;
                 alphaTimeout = false;
                 return BTS_switched;
             } 
@@ -41,31 +40,17 @@ UserStatus User::updateUser()
     return Good;
 }
 
-float User::gauss(float mean, float dev){
-    //temporary implementation
-    std::random_device rd; 
-    std::mt19937 gen(rd()); 
-    std::normal_distribution<float> d(mean, dev); 
-    return d(gen);
-}
-
 float User::calculatePower(float d)
 {
     return 4.56 - 22*log10(d) + random->generateGaussian(0, 4);
 }
 
-float User::getRandom()
-{
-
-    return 10; //temp
-}
-
 User::User(float speed_, Generator* random_)
 {
-    position = X_DISTANCE;
-    alphaTimeout = false;
-    alphaValue = TTT;
-    currentBTS = 0;
-    speed = speed_;
-    random = random_;
+    position    = X_DISTANCE;
+    alphaTimeout= false;
+    alphaValue  = TTT;
+    currentBTS  = 0;
+    speed       = speed_;
+    random      = random_;
 }

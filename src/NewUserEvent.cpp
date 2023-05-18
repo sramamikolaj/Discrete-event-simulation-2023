@@ -3,7 +3,6 @@
 
 ExecutionFlags NewUserEvent::execute(){
     ExecutionFlags returnFlags; 
-    std::cout << "NewEventUser execute" << std::endl;
     User* newUser = system->addUser();
     if(newUser){
         planNextUserReportEvent(newUser);
@@ -17,10 +16,9 @@ ExecutionFlags NewUserEvent::execute(){
 
 }
 void NewUserEvent::planNextNewUserEvent(){
-    std::cout << "NewEventUser planNextEvent for " << eventTime+5 << std::endl;
-    eq->push(new NewUserEvent(eventTime+random->randLog(1), eventQueue, system, eq, random));
+    double test = eventTime+random->randLog(LAMBDA);
+    eq->push(new NewUserEvent(test, eventQueue, system, eq, random));
 }
 void NewUserEvent::planNextUserReportEvent(User* user){
-    std::cout << "NewEventUser planUserReportEvent for " << eventTime+3 << std::endl;
-    eq->push(new UserReportEvent(eventTime+1, user, eq));
+    eq->push(new UserReportEvent(eventTime+REPORT_TIME*0.001, user, eq));
 }

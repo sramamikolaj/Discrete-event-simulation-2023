@@ -15,16 +15,12 @@ class User
 
     Generator * random;
     void    updatePosition();
-    float   gauss(float mean, float dev);
     float   calculatePower(float);
-    float   getRandom();
 
 public:
     User(float speed_, Generator* random_);
     UserStatus  updateUser();
 
-    
-    
 };
 
 #endif

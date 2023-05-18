@@ -12,6 +12,7 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/User.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/UserReportEvent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Generator.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Logger.cpp
 )
 
 add_executable(sc2023 "")

@@ -7,16 +7,17 @@
 #include "NewUserEvent.h"
 #include "UserReportEvent.h"
 #include "ExecutionFlags.h"
-
+#include "Logger.h"
 
 class Simulation{
     System* system;
     double time;
     Conditions conditions;
+    Logger logger;
     
     Generator* randomTime;
     void advanceTime();
-    void handleConditionalEvents(ExecutionFlags flags);
+    bool handleConditionalEvents(ExecutionFlags flags);
 
     std::list<TimedEvent*> eventQueue;
     std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare> eq;
