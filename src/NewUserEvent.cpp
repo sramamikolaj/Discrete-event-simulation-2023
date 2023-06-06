@@ -16,10 +16,10 @@ ExecutionFlags NewUserEvent::execute(){
 
 }
 void NewUserEvent::planNextNewUserEvent(){
-    double randomTi = random->randLog(LAMBDA);
+    double randomTi = random->randLog();
     //std::cout << randomTi << std::endl;
     eq->push(new NewUserEvent(eventTime+randomTi, eventQueue, system, eq, random));
 }
 void NewUserEvent::planNextUserReportEvent(User* user){
-    eq->push(new UserReportEvent(eventTime+REPORT_TIME*0.001, user, eq));
+    eq->push(new UserReportEvent(eventTime+REPORT_TIME, user, eq));
 }

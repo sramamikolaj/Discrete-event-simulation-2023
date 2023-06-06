@@ -1,6 +1,9 @@
 #include "Simulation.h"
+#include <iostream>
 
-int main() {
-    Simulation simulation;
+
+int main(int argc, char** argv) {
+    
+    Simulation simulation(argc, argv);
     simulation.run();
 }

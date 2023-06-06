@@ -7,20 +7,20 @@
 #include<list>
 #include<map>
 #include<string>
+#include<vector>
 
 class System{
 public:
-    float BTSposition[2];
-
-    Generator* usersRandom;
-    Generator* random;
-    int usersInQueue; 
+    Generator*       usersRandom;
+    Generator*       random;
+    int              usersInQueue; 
     std::list<User*> usersInSystem;
+    double tttMax;
     
-    User* addUser();
-    void removeUser(User*);
+    User*   addUser();
+    void    removeUser(User*);
 public:
-    System(); 
+    System(double tttMax_, std::vector<int>& seeds); 
     ~System();
     
 };

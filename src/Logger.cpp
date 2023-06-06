@@ -1,8 +1,9 @@
 #include "Logger.h"
-
-Logger::Logger()
+#include <string>
+Logger::Logger(int argc, char** argv)
 {
-   file.open("wyniki.csv", std::ios::trunc | std::ios::out);
+   std::string filename = "results/result_"+std::string(argv[1])+"_"+argv[2]+"_"+argv[3]+".csv";
+   file.open(filename, std::ios::trunc | std::ios::out);
         if (!file.is_open())
         {
             std::cerr << "Błąd otwarcia pliku " << std::endl;

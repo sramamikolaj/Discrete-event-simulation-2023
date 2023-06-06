@@ -2,32 +2,24 @@
 #include <iostream>
 
 ExecutionFlags UserReportEvent::execute(){
-    ExecutionFlags returnFlags; 
-       
-
+    ExecutionFlags returnInfo; 
     UserStatus status = user->updateUser();
-    if(status == BTS_switched){
-        returnFlags.userSwitched = true;    
-        eq->push(new UserReportEvent(eventTime+REPORT_TIME*0.001, user, eq));
-        return returnFlags;
+    switch(status){
+        case NO_NEWS:
+            eq->push(new UserReportEvent(eventTime+REPORT_TIME, user, eq));
+            break;
+        case BTS_SWITCHED:
+            returnInfo.userSwitched = true;    
+            eq->push(new UserReportEvent(eventTime+REPORT_TIME, user, eq));
+            break;
+        case CONNECTION_BROKEN:
+            returnInfo.userBrokeConnection = true;
+            returnInfo.user = user;
+            break;
+        case LEFT_SYSTEM:
+            returnInfo.userLeft = true;
+            returnInfo.user = user;
+            break;
     }
-    if(status != Broken && status != Left_system) 
-        eq->push(new UserReportEvent(eventTime+REPORT_TIME*0.001, user, eq));
-    else{
-        returnFlags.user = user;
-        switch(status){
-            case Broken:
-                returnFlags.userBrokeConnection = true;
-                break;
-            case Left_system:
-                returnFlags.userLeft = true;
-                break;
-            case BTS_switched:
-                
-                break;
-        }
-
-    }
-    
-    return returnFlags;   
+    return returnInfo;  
 }

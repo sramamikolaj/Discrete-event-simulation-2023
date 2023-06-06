@@ -9,7 +9,7 @@
 class Logger
 {
    public:
-      Logger();
+      Logger(int argc, char** argv);
       ~Logger();
 
       void setUsersInSystem(int users);

@@ -2,9 +2,11 @@
 #include "Generator.h"
 #include <cmath>
 #include <iostream>
-Generator::Generator(int kernel): kernel_(kernel)
+Generator::Generator(int kernel): kernel_(kernel), lambda_(0)
 {
-  // empty
+}
+Generator::Generator(int kernel, double lambda): kernel_(kernel), lambda_(lambda)
+{
 }
 
 Generator::~Generator()
@@ -24,7 +26,7 @@ double Generator::rand(int min, int max)
 {
    return rand()*(max-min)+min;
 }
-double Generator::randLog(double lambda)
+double Generator::randLog()
 {
    int h = kernel_/kQ;
    kernel_ = kA*(kernel_-kQ*h)-kR*h;
@@ -32,7 +34,7 @@ double Generator::randLog(double lambda)
       kernel_ = kernel_ + static_cast<int>(kM);
    double k = kernel_/kM;
    //std::cout << "k = " << k <<"     "<< -1 << "*" << (1/lambda) << "*" << log(k) << std::endl;
-   double returnable = (-1*(1/lambda)*log(k));
+   double returnable = (-1*(1/lambda_)*log(k));
    //std::cout << "Log generator will return " << (-1*(1/lambda)*log(k)) << std::endl;
    return returnable;
 }

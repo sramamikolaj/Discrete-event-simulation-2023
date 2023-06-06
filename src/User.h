@@ -4,23 +4,23 @@
 #include"defs.h"
 #include "Generator.h"
 
-
 class User
 {
-    float   alphaValue;
+
+    float   timeToTrigger; 
+    float   tttMax; 
+    bool    tttOngoing;
     short   currentBTS;
-    bool    alphaTimeout;
     float   position;
     float   speed;
-
     Generator * random;
+
     void    updatePosition();
     float   calculatePower(float);
-
+    
 public:
-    User(float speed_, Generator* random_);
+    User(float speed_, Generator* random_, double tttMax_);
     UserStatus  updateUser();
-
 };
 
 #endif
