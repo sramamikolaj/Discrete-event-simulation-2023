@@ -11,19 +11,16 @@
 #include <vector>
 
 class Simulation{
-    System* system;
-    double time;
-    Logger* logger;
+    System*     system;
+    double      time;
+    Logger*     logger;
     std::vector<int> seeds;
-    
-    Generator* randomTime;
+    Generator*       randomTime;
     void advanceTime();
-    bool handleConditionalEvents(ExecutionFlags flags);
-    std::vector<int> getSeeds(int setNumber);
+    void handleConditionalEvents(ExecutionFlags flags);
+    std::vector<int> readSeeds(int setNumber);
 
-    std::list<TimedEvent*> eventQueue;
-    std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare> eq;
-
+    std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare> eventQueue;
 public: 
     Simulation(int argc, char** argv);
     ~Simulation();

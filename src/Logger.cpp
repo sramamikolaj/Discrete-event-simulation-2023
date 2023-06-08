@@ -64,10 +64,10 @@ int Logger::getHandled()
 std::stringstream Logger::generateString()
 {
    std::stringstream ss;
-   ss << usersHandled << "," <<
-      usersInSystem << "," <<
-      usersLeft << "," <<
-      usersBroken << "," <<
+   ss << usersHandled << ", " <<
+      usersInSystem << ", " <<
+      usersLeft << ", " <<
+      usersBroken << ", " <<
       totalSwitches << std::endl;
    return ss;
 }

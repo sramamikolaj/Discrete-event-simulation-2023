@@ -11,11 +11,11 @@
 
 class System{
 public:
-    Generator*       usersRandom;
-    Generator*       random;
+    Generator*       randomPower;
+    Generator*       randomSpeed;
     int              usersInQueue; 
     std::list<User*> usersInSystem;
-    double tttMax;
+    double           tttMax;
     
     User*   addUser();
     void    removeUser(User*);

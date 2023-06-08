@@ -4,8 +4,8 @@ System::System(double tttMax_, std::vector<int>& seeds)
 {
     tttMax = tttMax_;
     usersInQueue = 0;
-    random = new Generator(seeds[1]);
-    usersRandom = new Generator(seeds[2]);
+    randomSpeed = new Generator(seeds[1]);
+    randomPower = new Generator(seeds[2]);
 }
 void System::removeUser(User* user){
     usersInSystem.remove(user);
@@ -13,14 +13,14 @@ void System::removeUser(User* user){
 }
 System::~System()
 {
-    delete random;
-    delete usersRandom;
+    delete randomSpeed;
+    delete randomPower;
 }
 
 User* System::addUser(){
     if(usersInSystem.size() >= USER_LIMIT){
         return nullptr; 
     }
-    usersInSystem.push_back(new User(random->rand(5, 50), usersRandom, tttMax));
+    usersInSystem.push_back(new User(randomSpeed->rand(5, 50), randomPower, tttMax));
     return usersInSystem.back();
 }

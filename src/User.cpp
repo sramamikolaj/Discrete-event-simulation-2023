@@ -17,7 +17,7 @@ User::User(float speed_, Generator* random_, double tttMax_)
 UserStatus User::updateUser()
 {
     updatePosition();
-    if(position > BTS_POSITION[1]+X_DISTANCE) return LEFT_SYSTEM;
+    if(position > BTS_POSITION[1]-X_DISTANCE) return LEFT_SYSTEM;
     
     float powerCurrentBTS = calculatePower(abs(position - BTS_POSITION[currentBTS]));
     float powerSecondBTS  = calculatePower(abs(position - BTS_POSITION[!currentBTS]));
