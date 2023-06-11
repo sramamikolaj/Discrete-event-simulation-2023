@@ -6,7 +6,7 @@
 #include "System.h"
 #include "NewUserEvent.h"
 #include "UserReportEvent.h"
-#include "ExecutionFlags.h"
+#include "ExecutionInfo.h"
 #include "Logger.h"
 #include <vector>
 
@@ -16,8 +16,10 @@ class Simulation{
     Logger*     logger;
     std::vector<int> seeds;
     Generator*       randomTime;
+    int handledRange[2];
+
     void advanceTime();
-    void handleConditionalEvents(ExecutionFlags flags);
+    void handleConditionalEvents(ExecutionInfo flags);
     std::vector<int> readSeeds(int setNumber);
 
     std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare> eventQueue;

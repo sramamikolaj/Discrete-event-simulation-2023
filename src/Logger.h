@@ -5,32 +5,37 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 class Logger
 {
-   public:
-      Logger(int argc, char** argv);
-      ~Logger();
+    std::ofstream file;
+    std::ofstream fileDistance;
+    std::ofstream fileUsers;
+    std::stringstream generateString();
+    int usersInSystem;
+    int usersHandled;
+    int usersLeft;
+    int usersBroken;
+    int totalSwitches;
 
-      void setUsersInSystem(int users);
-      void addHandled_left();
-      void addHandled_broken();
-      void addSwitch();
+public:
+    Logger(int argc, char** argv);
+    ~Logger();
 
-      void print();
+    void setUsersInSystem(int users);
+    void addHandled_left();
+    void addHandled_broken();
+    void addSwitch();
+    void logSwitch(float position);
+    void print();
+    void printHeader(int argc, char** argv, std::vector<int> seeds);
+    void log();
+    void logHeader();
+    void logUserData(int id, float distance, short bts);
+    int  getHandled();
 
-      void log();
-      int getHandled();
-
-  private:
-      std::ofstream file;
-      std::stringstream generateString();
-
-      int usersInSystem;
-      int usersHandled;
-      int usersLeft;
-      int usersBroken;
-      int totalSwitches;
+    
 };
 
 

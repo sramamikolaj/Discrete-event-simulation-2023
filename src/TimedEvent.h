@@ -1,20 +1,18 @@
 #ifndef TIMED_EVENT_H
 #define TIMED_EVENT_H
-#include<list>
-#include<queue>
-#include"ExecutionFlags.h"
 
+#include <list>
+#include <queue>
+#include "ExecutionInfo.h"
 class Compare;
 
 class TimedEvent{
 public:
-    std::list<TimedEvent*>* eventQueue;
-    double eventTime;
-    virtual ExecutionFlags execute() = 0;
-    std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq;
-
     TimedEvent(double time, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_):eventTime(time),eq(eq_){};
-  
+    double eventTime;
+    virtual ExecutionInfo execute() = 0;
+protected:
+    std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq;
 };
 
 class Compare {

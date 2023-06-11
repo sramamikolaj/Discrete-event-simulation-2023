@@ -1,5 +1,5 @@
 #include "System.h"
-#include<iostream>
+
 System::System(double tttMax_, std::vector<int>& seeds)
 {
     tttMax = tttMax_;
@@ -7,20 +7,27 @@ System::System(double tttMax_, std::vector<int>& seeds)
     randomSpeed = new Generator(seeds[1]);
     randomPower = new Generator(seeds[2]);
 }
-void System::removeUser(User* user){
-    usersInSystem.remove(user);
-    delete user;
-}
+
 System::~System()
 {
     delete randomSpeed;
     delete randomPower;
 }
 
-User* System::addUser(){
-    if(usersInSystem.size() >= USER_LIMIT){
+void System::removeUser(User* user){
+    usersInSystem.remove(user);
+    delete user;
+}
+
+void System::switchBTS(User* user)
+{
+    user->switchBTS();
+}
+
+User *System::addUser()
+{
+    if(usersInSystem.size() >= SYSTEM_CAPACITY) 
         return nullptr; 
-    }
-    usersInSystem.push_back(new User(randomSpeed->rand(5, 50), randomPower, tttMax));
+    usersInSystem.push_back(new User(randomSpeed->rand(MIN_SPEED, MAX_SPEED), randomPower, tttMax));
     return usersInSystem.back();
 }

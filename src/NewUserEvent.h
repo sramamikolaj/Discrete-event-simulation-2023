@@ -12,21 +12,14 @@
 class NewUserEvent: public TimedEvent{
 
 private:
-    System* system;
-
-    Generator* random;
+    System*     system;
+    Generator*  random;
     void planNextNewUserEvent();
     void planNextUserReportEvent(User*);
-    //std::queue<User>* usersInSystem;
 public:
-    ExecutionFlags execute();
-
+    NewUserEvent(double time, System* system_, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_, Generator* random_);
     
-    NewUserEvent(double time, System* system_, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_, Generator* random_):TimedEvent(time, eq_), system(system_), random(random_)
-    {
-        //std::cout << "NewUserEvent at " << time << std::endl;
-    };
-
+    ExecutionInfo execute();
 };
 
 #endif 

@@ -3,7 +3,7 @@
 #include <random>
 #include <iostream>
 
-User::User(float speed_, Generator* random_, double tttMax_)
+User::User(float speed_, Generator* random_, float tttMax_)
 {
     tttMax          = tttMax_;
     position        = X_DISTANCE;
@@ -22,18 +22,16 @@ UserStatus User::updateUser()
     float powerCurrentBTS = calculatePower(abs(position - BTS_POSITION[currentBTS]));
     float powerSecondBTS  = calculatePower(abs(position - BTS_POSITION[!currentBTS]));
     float powerDifference = powerCurrentBTS - powerSecondBTS;
-
-    if((-1)*powerDifference > DELTA){
-    return CONNECTION_BROKEN;
-    }
+    if((-1)*powerDifference > DELTA)
+        return CONNECTION_BROKEN;
+    
     if((-1)*powerDifference > ALPHA){
         if(tttOngoing){
             timeToTrigger -= REPORT_TIME;
             if(timeToTrigger <= 0){
-                currentBTS    = !currentBTS;
                 timeToTrigger = tttMax;
                 tttOngoing    = false;
-                return BTS_SWITCHED;
+                return BTS_SWITCH_REQUEST;
             }
         }
         else tttOngoing = true;
@@ -46,6 +44,21 @@ UserStatus User::updateUser()
     return NO_NEWS;
 }
 
+void User::switchBTS()
+{
+    currentBTS = !currentBTS;
+}
+
+float User::getPosition()
+{
+    return position;
+}
+
+short User::getBTS()
+{
+    return currentBTS;
+}
+
 void User::updatePosition()
 {
     position += speed * REPORT_TIME;
@@ -53,6 +66,6 @@ void User::updatePosition()
 
 float User::calculatePower(float d)
 {
-    return 4.56 - 22*log10(d) + random->generateGaussian(0, 4);
+    return 4.56 - 22*log10(d) + random->randGaussian(MU, SIGMA);
 }
 

@@ -5,16 +5,11 @@
 #include <queue>
 
 class UserReportEvent: public TimedEvent{
-private:
     User* user;
-    
 public:
+    UserReportEvent(double time, User* user_, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_);
     
-    ExecutionFlags execute();
-
-    UserReportEvent(double time, User* user_, std::priority_queue<TimedEvent*, std::vector<TimedEvent*>, Compare>* eq_):TimedEvent(time, eq_), user(user_){};
-
-
+    ExecutionInfo execute();
 };
 
 #endif 

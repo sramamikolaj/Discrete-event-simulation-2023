@@ -3,26 +3,24 @@
 
 #include "User.h"
 #include "Generator.h" 
-#include<queue>
-#include<list>
-#include<map>
-#include<string>
-#include<vector>
+#include <list>
+#include <vector>
 
 class System{
-public:
     Generator*       randomPower;
     Generator*       randomSpeed;
-    int              usersInQueue; 
-    std::list<User*> usersInSystem;
     double           tttMax;
-    
-    User*   addUser();
-    void    removeUser(User*);
+
 public:
     System(double tttMax_, std::vector<int>& seeds); 
     ~System();
     
+    int              usersInQueue; 
+    std::list<User*> usersInSystem;
+
+    void    switchBTS(User*);
+    User*   addUser();
+    void    removeUser(User*);
 };
 
 #endif
