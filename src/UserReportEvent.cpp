@@ -1,5 +1,4 @@
 #include "UserReportEvent.h"
-#include <iostream>
 
 UserReportEvent::UserReportEvent(double time, User *user_, std::priority_queue<TimedEvent *, std::vector<TimedEvent *>, Compare> *eq_)
     :TimedEvent(time, eq_)

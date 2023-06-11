@@ -1,12 +1,12 @@
 #ifndef USER_H
 #define USER_H
 
-#include"defs.h"
+#include "defs.h"
 #include "Generator.h"
+#include <cmath>
 
 class User
 {
-
     float   timeToTrigger; 
     float   tttMax; 
     bool    tttOngoing;

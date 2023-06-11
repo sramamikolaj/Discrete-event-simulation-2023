@@ -6,9 +6,8 @@
 #include "System.h"
 #include "User.h"
 #include "Simulation.h"
-#include <queue>
 #include "Generator.h"
-#include<iostream>
+
 class NewUserEvent: public TimedEvent{
 
 private:

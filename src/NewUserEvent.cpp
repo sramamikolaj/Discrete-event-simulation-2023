@@ -1,6 +1,5 @@
 #include "NewUserEvent.h"
 #include "UserReportEvent.h"
-#include "iostream"
 
 NewUserEvent::NewUserEvent(double time, System *system_, std::priority_queue<TimedEvent *, std::vector<TimedEvent *>, Compare> *eq_, Generator *random_)
     :TimedEvent(time, eq_)

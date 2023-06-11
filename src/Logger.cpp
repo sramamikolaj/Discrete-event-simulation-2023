@@ -1,5 +1,4 @@
 #include "Logger.h"
-#include <string>
 
 Logger::Logger(int argc, char** argv)
 {
@@ -11,19 +10,20 @@ Logger::Logger(int argc, char** argv)
 
    std::string filename = "results/result_"+std::string(argv[1])+"_"+argv[2]+"_"+argv[3]+".csv";
    file.open(filename, std::ios::trunc | std::ios::out);
-   if (!file.is_open()) std::cerr << "Eror opening file" << std::endl;
+   if (!file.is_open()) std::cerr << "Error opening file" << std::endl;
    file << "Users handled, users in system, users left, users broken, total switches" << std::endl;
 
    filename = "results_distance/result_"+std::string(argv[1])+"_"+argv[2]+"_"+argv[3]+".csv";
    fileDistance.open(filename, std::ios::trunc | std::ios::out);
-   if (!fileDistance.is_open()) std::cerr << "Eror opening file" << std::endl;
+   if (!fileDistance.is_open()) std::cerr << "Error opening file" << std::endl;
    fileDistance << "BTS 1 -> 2 switch position" << std::endl;
 
    filename = "results_user/result_"+std::string(argv[1])+"_"+argv[2]+"_"+argv[3]+".csv";
    fileUsers.open(filename, std::ios::trunc | std::ios::out);
-   if (!fileUsers.is_open()) std::cerr << "Eror opening file" << std::endl;
+   if (!fileUsers.is_open()) std::cerr << "Error opening file" << std::endl;
    fileUsers << "user, distance, bts" << std::endl;
 }
+
 Logger::~Logger()
 {
    file.close();

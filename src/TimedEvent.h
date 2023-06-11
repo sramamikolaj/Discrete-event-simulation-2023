@@ -1,7 +1,6 @@
 #ifndef TIMED_EVENT_H
 #define TIMED_EVENT_H
 
-#include <list>
 #include <queue>
 #include "ExecutionInfo.h"
 class Compare;

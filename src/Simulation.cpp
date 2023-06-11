@@ -1,7 +1,4 @@
-#include <iostream>
 #include "Simulation.h"
-#include <string>
-#include <fstream>
 
 Simulation::Simulation(int argc, char** argv){
     time        = 0; 
@@ -113,7 +110,6 @@ std::vector<int> Simulation::readSeeds(int setNumber)
     int number;
     for (int i = 0; i < 3; ++i) {
         if (file >> number) {
-            std::cout << "Seed " << i << ": " << number << std::endl;
             numbers.push_back(number);
         } else {
             std::cout << "Error reading seeds" << std::endl;

@@ -1,6 +1,5 @@
 #ifndef RANDOM_GENERATOR_H_
 #define RANDOM_GENERATOR_H_
-#include <string>
 
 class Generator
 {

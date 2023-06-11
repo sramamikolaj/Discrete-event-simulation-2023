@@ -1,7 +1,5 @@
 #include "User.h"
-#include <cmath>
-#include <random>
-#include <iostream>
+
 
 User::User(float speed_, Generator* random_, float tttMax_)
 {

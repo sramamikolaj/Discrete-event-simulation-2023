@@ -2,6 +2,9 @@
 #define SIMULATION_H
 #include <queue>  
 #include <list>
+#include <iostream>
+#include <string>
+#include <fstream>
 #include "TimedEvent.h" 
 #include "System.h"
 #include "NewUserEvent.h"
@@ -9,6 +12,7 @@
 #include "ExecutionInfo.h"
 #include "Logger.h"
 #include <vector>
+
 
 class Simulation{
     System*     system;

@@ -1,8 +1,7 @@
-
 #include "Generator.h"
 #include <cmath>
-#include <iostream>
-#include <random>
+
+
 Generator::Generator(int kernel): kernel_(kernel), lambda_(0)
 {
 }
