@@ -13,7 +13,10 @@ Simulation::Simulation(int argc, char** argv){
     eventQueue.push(new NewUserEvent(time+randomTime->randLog(), system, &eventQueue, randomTime));
     handledRange[0] = std::stoi(argv[4]); 
     handledRange[1] = std::stoi(argv[5]); 
-    if(handledRange[0] == 0) logger->log();
+    if(handledRange[0] == 0){
+        logger->log();
+        logger->print();
+    } 
 }
 
 Simulation::~Simulation()
