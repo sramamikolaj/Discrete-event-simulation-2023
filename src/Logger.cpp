@@ -1,5 +1,6 @@
 #include "Logger.h"
 #include <string>
+
 Logger::Logger(int argc, char** argv)
 {
    usersInSystem  = 0;
